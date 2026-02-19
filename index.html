@@ -253,6 +253,7 @@
     <a href="#system">System</a>
     <a href="#streams">Data</a>
     <a href="#agents">Agents</a>
+    <a href="#api">API</a>
     <a href="#contact">Contact</a>
     <a href="https://github.com/peretzp" target="_blank">GitHub</a>
   </div>
@@ -260,7 +261,7 @@
 
 <!-- ── HERO ── -->
 <div class="hero">
-  <div class="hero-label">Online — Bay Area, CA</div>
+  <div class="hero-label">Online — Oakland, CA</div>
   <h1>Building a<br><span>personal OS</span><br>on top of life.</h1>
   <p class="hero-sub">
     Computational biologist. Builder. Fifteen live data streams, 929 indexed voice memos,
@@ -385,6 +386,55 @@
   </div>
 </section>
 
+<!-- ── API ── -->
+<section id="api">
+  <div class="section-label">API</div>
+  <h2>Everything is<br>queryable.</h2>
+  <p class="section-sub">
+    PracticeLife OS exposes a live REST API at port 3001.
+    MemoryAtlas, Obsidian vault, system state, agent sessions —
+    all machine-readable. This is not a product. It's infrastructure.
+  </p>
+  <div class="stack-grid">
+    <div class="stack-card">
+      <div class="stack-icon">🧠</div>
+      <h3>/api/atlas</h3>
+      <p>929 voice memos. Paginated asset list, single asset lookup, full-text search, transcription stats. Bilingual corpus.</p>
+      <span class="stack-tag">GET /api/atlas/assets · /stats · /search/:q</span>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">📓</div>
+      <h3>/api/vault</h3>
+      <p>2,624 Obsidian notes. Note count, directory listing, individual note read, full vault structure map.</p>
+      <span class="stack-tag">GET /api/vault/notes · /note · /structure</span>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">⚙️</div>
+      <h3>/api/system</h3>
+      <p>Live CPU, memory, disk. Mounted volumes including external drives. Ollama local model list (llama3.3:70b, qwen2.5:32b, codellama:34b).</p>
+      <span class="stack-tag">GET /api/system/state · /volumes · /ollama</span>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">🤖</div>
+      <h3>/api/agents</h3>
+      <p>Live agent coordination protocol. All Claude session logs readable by name. Codex–Claude collaboration brief. Full agent history.</p>
+      <span class="stack-tag">GET /api/agents/protocol · /sessions · /collab-brief</span>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">🗺</div>
+      <h3>/api/ecosystem</h3>
+      <p>Complete PracticeLife OS map — every service, agent, scheduler, and infrastructure component. JSON or plain text. The full picture in one call.</p>
+      <span class="stack-tag">GET /api/ecosystem?format=json|text</span>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">🌊</div>
+      <h3>/stream</h3>
+      <p>15 live data probes rendered as a domain-grouped dashboard. Memory, Mind, Network, Body, Orbit. Self-assembling manifest. 60s auto-refresh.</p>
+      <span class="stack-tag">localhost:3000/stream</span>
+    </div>
+  </div>
+</section>
+
 <!-- ── CONTACT ── -->
 <section id="contact">
   <div class="contact-box">
@@ -392,9 +442,9 @@
     <h2>The system is always running.</h2>
     <p>If you're building something that should talk to this — reach out. No forms.</p>
     <div class="contact-links">
-      <a href="https://github.com/peretzp" class="btn btn-ghost" target="_blank">GitHub</a>
-      <a href="https://twitter.com/peretzp" class="btn btn-ghost" target="_blank">Twitter / X</a>
-      <a href="mailto:peretz@peretzpartensky.com" class="btn btn-primary">peretz@peretzpartensky.com</a>
+      <a href="https://github.com/peretzp" class="btn btn-ghost" target="_blank">GitHub ↗</a>
+      <a href="mailto:peretzp@gmail.com" class="btn btn-ghost">peretzp@gmail.com</a>
+      <a href="mailto:peretz@a2agents.com" class="btn btn-primary">peretz@a2agents.com</a>
     </div>
   </div>
 </section>
