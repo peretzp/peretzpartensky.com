@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('building'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Base title="Building">
+  <h1>Building</h1>
+  <p>Technical work, systems, tools.</p>
+
+  {posts.length === 0 && <p style="color: var(--text-dim); margin-top: 2rem;">Nothing here yet.</p>}
+
+  <ul class="post-list">
+    {posts.map((post) => (
+      <li>
+        <a href={`/building/${post.id}`}>{post.data.title}</a>
+        <div class="date">{post.data.date.toISOString().split('T')[0]}</div>
+        {post.data.description && <div class="description">{post.data.description}</div>}
+      </li>
+    ))}
+  </ul>
+</Base>

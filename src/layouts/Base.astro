@@ -1,0 +1,257 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+const pageTitle = title ? `${title} — Peretz Partensky` : 'Peretz Partensky';
+const pageDescription = description || 'Builder of living systems.';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={pageDescription} />
+    <title>{pageTitle}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <nav>
+      <a href="/" class="site-name">peretz partensky</a>
+      <div class="nav-links">
+        <a href="/writing">writing</a>
+        <a href="/building">building</a>
+      </div>
+    </nav>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <span>Peretz Partensky</span>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #0a0a0a;
+    --text: #c4c4c4;
+    --text-dim: #666;
+    --text-bright: #e8e8e8;
+    --accent: #00ff88;
+    --link: #c4c4c4;
+    --link-hover: #ffffff;
+    --border: #1a1a1a;
+    --mono: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    line-height: 1.7;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a {
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  a:hover {
+    color: var(--link-hover);
+    border-color: var(--text-dim);
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+  }
+
+  nav a {
+    border-bottom: none;
+  }
+
+  nav .site-name {
+    color: var(--text-bright);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  nav .nav-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  nav .nav-links a {
+    color: var(--text-dim);
+  }
+
+  nav .nav-links a:hover {
+    color: var(--text-bright);
+  }
+
+  main {
+    flex: 1;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+
+  ul, ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  li {
+    margin-bottom: 0.25rem;
+  }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.85em;
+    background: #141414;
+    padding: 0.15em 0.4em;
+    border-radius: 3px;
+  }
+
+  pre {
+    background: #111;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    border: 1px solid var(--border);
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
+  }
+
+  blockquote {
+    border-left: 2px solid var(--text-dim);
+    padding-left: 1rem;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+  }
+
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .post-list li {
+    margin-bottom: 1.25rem;
+  }
+
+  .post-list a {
+    display: block;
+    color: var(--text-bright);
+    font-size: 0.9rem;
+    border-bottom: none;
+  }
+
+  .post-list a:hover {
+    color: var(--accent);
+  }
+
+  .post-list .date {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 0.15rem;
+  }
+
+  .post-list .description {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 0.15rem;
+  }
+
+  .prose {
+    line-height: 1.8;
+  }
+
+  .prose p {
+    margin-bottom: 1.25rem;
+  }
+
+  .post-header {
+    margin-bottom: 2rem;
+  }
+
+  .post-header .date {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 0.25rem;
+  }
+</style>
