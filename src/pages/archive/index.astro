@@ -1,0 +1,62 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('archive', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const bySite = {
+  'tolerable-insanity': posts.filter(p => p.data.source === 'tolerable-insanity'),
+  'jalalagood': posts.filter(p => p.data.source === 'jalalagood'),
+};
+---
+
+<Base title="Archive" description="15 years of travel writing and adventures.">
+  <h1>Archive</h1>
+  <p>Writing from previous lives. Migrated from <a href="https://tolerableinsanity.com">tolerableinsanity.com</a> (2003-2012) and <a href="https://jalalagood.com">jalalagood.com</a> (2010-2012).</p>
+
+  <h2>Tolerable Insanity <span class="post-count">({bySite['tolerable-insanity'].length})</span></h2>
+  <p class="section-desc">Travel writing, observations, and adventures. Cambridge, Beijing, Moscow, Central Asia, San Francisco, the East Coast.</p>
+  <ul class="post-list">
+    {bySite['tolerable-insanity'].map(post => (
+      <li>
+        <a href={`/archive/${post.id}`}>{post.data.title}</a>
+        <div class="date">{post.data.date.toISOString().slice(0, 10)}</div>
+        {post.data.tags.length > 0 && <div class="description">{post.data.tags.join(', ')}</div>}
+      </li>
+    ))}
+  </ul>
+
+  {bySite['jalalagood'].length > 0 && (
+    <>
+      <h2>Jalalagood <span class="post-count">({bySite['jalalagood'].length})</span></h2>
+      <p class="section-desc">Adventures in Jalalabad, Afghanistan. From Khyber Space to Cyber Space.</p>
+      <ul class="post-list">
+        {bySite['jalalagood'].map(post => (
+          <li>
+            <a href={`/archive/${post.id}`}>{post.data.title}</a>
+            <div class="date">{post.data.date.toISOString().slice(0, 10)}</div>
+          </li>
+        ))}
+      </ul>
+    </>
+  )}
+
+  <hr />
+
+  <h2>External Publications</h2>
+  <ul class="post-list">
+    <li><a href="https://www.wired.com/story/to-beat-the-coronavirus-raise-an-army-of-the-recovered/">To Beat the Coronavirus, Raise an Army of the Recovered</a><div class="date">2020 &middot; Wired</div></li>
+    <li><a href="https://www.nplusonemag.com/online-only/online-only/basketball-diaries-afghanistan/">Basketball Diaries, Afghanistan</a><div class="date">2012 &middot; n+1</div></li>
+    <li><a href="https://medium.com/indian-thoughts/good-samaritan-backfire-9f53ef6a1c10">Good Samaritan Backfire</a><div class="date">2014 &middot; Medium</div></li>
+    <li><a href="https://medium.com/art-marketing/i-got-arrested-in-kazakhstan-and-represented-myself-in-court-d3764fb738f1">I Got Arrested in Kazakhstan</a><div class="date">2016 &middot; Medium</div></li>
+    <li><a href="https://foodtechconnect.com/2014/07/09/why-we-need-open-collaborative-food-sourcing/">Why We Need Open & Collaborative Food Sourcing</a><div class="date">2014 &middot; Food+Tech Connect</div></li>
+    <li><a href="https://foodtechconnect.com/2015/04/17/food-supply-chain-transparency-healthy-future/">Food Supply Chain Transparency</a><div class="date">2015 &middot; Food+Tech Connect</div></li>
+    <li><a href="https://www.nature.com/articles/nature08621">Chromatin remodeller ACF acts as a dimeric motor</a><div class="date">2009 &middot; Nature</div></li>
+  </ul>
+</Base>
+
+<style>
+  .post-count { color: var(--text-dim); font-weight: normal; font-size: 0.85rem; }
+  .section-desc { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 1rem; }
+</style>

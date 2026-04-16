@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('science', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Base title="Science" description="Immunology, liquid compute, and the neuro/AI intersection.">
+  <h1>Science</h1>
+  <p>At the intersection of immunology, neuroscience, and artificial intelligence. How distributed biological systems compute, and what AI can learn from 500 million years of immune evolution.</p>
+
+  {posts.length > 0 ? (
+    <ul class="post-list">
+      {posts.map(post => (
+        <li>
+          <a href={`/science/${post.id}`}>{post.data.title}</a>
+          <div class="date">{post.data.date.toISOString().slice(0, 10)}</div>
+          {post.data.description && <div class="description">{post.data.description}</div>}
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p class="coming-soon">Essays in progress. First up: <em>Liquid Compute — The Immune System as Distributed Intelligence.</em></p>
+  )}
+</Base>
+
+<style>
+  .coming-soon { color: var(--text-dim); font-style: italic; margin-top: 2rem; }
+</style>
